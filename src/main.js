@@ -1,8 +1,11 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
+import axios from 'axios';
 
-Vue.config.productionTip = false
+axios.defaults.baseURL = 'https://api.harvardartmuseums.org';
+
+Vue.config.productionTip = false;
 
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+  render: h => h(App)
+}).$mount('#app');
