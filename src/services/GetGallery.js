@@ -1,12 +1,9 @@
 import axios from 'axios';
-import apiKey from '../assets/apiKey';
 
 export default {
-  getPeriod() {
-    return axios
-      .get(`/exhibition?venue=HAM&apikey=${apiKey}`)
-      .then(response => {
-        return response.data;
-      });
+  getAllObjects(url) {
+    return axios.get(url).then(response => {
+      return response.data;
+    });
   }
 };
