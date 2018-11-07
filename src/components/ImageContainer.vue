@@ -18,4 +18,8 @@ export default {
 .gallery-image {
   width: 100%;
 }
+li {
+  list-style-type: none;
+  text-decoration: none;
+}
 </style>
