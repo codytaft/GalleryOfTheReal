@@ -3,9 +3,10 @@
   <div id="app">
     <Header msg="Welcome to the Gallery of the Real"/>
     <hr>
-    <button v-on:click="getArtistObjects(28495), this.images = []" class="sargent-btn artist-btn">John Singer Sargent</button>
+    <button v-on:click="getArtistObjects(28495)" class="sargent-btn artist-btn">John Singer Sargent</button>
     <button v-on:click="getArtistObjects(29118)" class="turner-btn artist-btn">J.M.W. Turner</button>
     <button v-on:click="getArtistObjects(18390)" class="dore-btn artist-btn">Gustave Dore</button>
+    <button v-on:click="getArtistObjects(29318)" class="warhol-btn artist-btn">Andy Warhol</button>
     <ul v-if="this.images.length">
       <ImageContainer  v-for="item in images" v-bind:image="item" v-bind:key="item.id"/>
     </ul>
@@ -53,10 +54,8 @@ export default {
       return objects.forEach(object => {
         if(object.images) {
           object.images.forEach(image => {
-            
             this.images.push(image.baseimageurl)
           })
-          console.log(this.images)
         }
       })
     }

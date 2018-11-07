@@ -1,6 +1,6 @@
 <template>
 <li id="image-container">
-    <img v-bind:src='this.image' alt="gallery image">
+    <img v-bind:src='this.image' alt="gallery image" class="gallery-image">
 </li>
 </template>
 
@@ -15,4 +15,7 @@ export default {
 </script>
 
 <style scoped>
+.gallery-image {
+  width: 100%;
+}
 </style>
