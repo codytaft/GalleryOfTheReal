@@ -1,11 +1,12 @@
 
 <template>
   <div id="app">
-    <Header msg="Welcome to the Gallery of the Real"/>
+    <AppTitle msg="Welcome to the Gallery of the Real"/>
     <hr>
-    <button v-on:click="getArtistObjects(28495), this.images = []" class="sargent-btn artist-btn">John Singer Sargent</button>
+    <button v-on:click="getArtistObjects(28495)" class="sargent-btn artist-btn">John Singer Sargent</button>
     <button v-on:click="getArtistObjects(29118)" class="turner-btn artist-btn">J.M.W. Turner</button>
     <button v-on:click="getArtistObjects(18390)" class="dore-btn artist-btn">Gustave Dore</button>
+    <button v-on:click="getArtistObjects(29318)" class="warhol-btn artist-btn">Andy Warhol</button>
     <ul v-if="this.images.length">
       <ImageContainer  v-for="item in images" v-bind:image="item" v-bind:key="item.id"/>
     </ul>
@@ -15,7 +16,7 @@
 <script src="http://localhost:8098"></script>
 
 <script>
-import Header from './components/Header.vue'
+import AppTitle from './components/AppTitle.vue'
 import ImageContainer from './components/ImageContainer.vue'
 import GetGallery from './services/GetGallery'
 import apiKey from './assets/apiKey';
@@ -24,7 +25,7 @@ import axios from 'axios';
 export default {
   name: 'app',
   components: {
-    Header,
+    AppTitle,
     ImageContainer
   },
   data() {
@@ -53,26 +54,12 @@ export default {
       return objects.forEach(object => {
         if(object.images) {
           object.images.forEach(image => {
-            
             this.images.push(image.baseimageurl)
           })
-          console.log(this.images)
         }
       })
     }
-  },
-
-  // created() {
-  //   const url = `https://api.harvardartmuseums.org/object?hasimage=1&apikey=${apiKey}`
-  //   GetGallery.getAllObjects(url)
-  //   .then(objects => {
-  //     this.getImages(objects)
-  //   })
-  //   .catch(error => console.log(error))
-  //   .finally(() => {
-  //     this.loading = false
-  //   })
-  // }
+  }
 }
 </script>
 
@@ -97,5 +84,28 @@ body {
   margin: 1rem;
   height: 2rem;
   border-radius: 1rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  width: 10rem;
+  height: 3rem;
+  margin: 1rem;
+  border: 0.2rem solid whitesmoke;
+  color: whitesmoke;
+  background-color: #010407;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+button:focus {
+  outline: none;
+}
+
+button:active {
+  background-color: #2c3e50;
 }
 </style>
