@@ -3,8 +3,12 @@
   <div id="app">
     <Header msg="Welcome to the Gallery of the Real"/>
     <hr>
-    <button class="pill-btn blue-pill"></button>
-    <button class="pill-btn red-pill"></button>
+    <button v-on:click="getArtistObjects(28495), this.images = []" class="sargent-btn artist-btn">John Singer Sargent</button>
+    <button v-on:click="getArtistObjects(29118)" class="turner-btn artist-btn">J.M.W. Turner</button>
+    <button v-on:click="getArtistObjects(18390)" class="dore-btn artist-btn">Gustave Dore</button>
+    <ul v-if="this.images.length">
+      <ImageContainer  v-for="item in images" v-bind:image="item" v-bind:key="item.id"/>
+    </ul>
   </div>
 </template>
 
@@ -12,31 +16,63 @@
 
 <script>
 import Header from './components/Header.vue'
+import ImageContainer from './components/ImageContainer.vue'
 import GetGallery from './services/GetGallery'
-
+import apiKey from './assets/apiKey';
+import axios from 'axios';
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    ImageContainer
   },
   data() {
     return {
+      home: true,
       loading: true,
-      periods: []
+      objects: [],
+      images: [],
+      nextLink: '',
+    }
+  },
+  methods: {
+
+    getArtistObjects(id) {
+      return axios.get(`https://api.harvardartmuseums.org/object?person=${id}&size=20&apikey=${apiKey}`)
+        .then(response => {
+          this.getImages(response.data.records)
+        })
+        .catch(error => console.log(error))
+        .finally(() => {
+          this.loading = false
+        })
+    },
+
+    getImages: function(objects) {
+      return objects.forEach(object => {
+        if(object.images) {
+          object.images.forEach(image => {
+            
+            this.images.push(image.baseimageurl)
+          })
+          console.log(this.images)
+        }
+      })
     }
   },
 
-  created() {
-    GetGallery.getPeriod()
-    .then(periods => {
-      this.periods = periods.records
-    })
-    .catch(error => console.log(error))
-    .finally(() => {
-      this.loading = false
-    })
-  }
+  // created() {
+  //   const url = `https://api.harvardartmuseums.org/object?hasimage=1&apikey=${apiKey}`
+  //   GetGallery.getAllObjects(url)
+  //   .then(objects => {
+  //     this.getImages(objects)
+  //   })
+  //   .catch(error => console.log(error))
+  //   .finally(() => {
+  //     this.loading = false
+  //   })
+  // }
 }
 </script>
 
