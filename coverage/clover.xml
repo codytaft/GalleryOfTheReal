@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1541603107230" clover="3.2.0">
+  <project timestamp="1541603107230" name="All files">
+    <metrics statements="20" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="9" coveredmethods="1" elements="31" coveredelements="9" complexity="0" loc="20" ncloc="20" packages="3" files="3" classes="3">
+      <package name="src">
+        <metrics statements="16" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="1"/>
+        <file name="App.vue" path="/Users/omoyomo/turing/Mod4/GalleryOfTheReal/src/App.vue">
+          <metrics statements="16" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="8" coveredmethods="1"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="15" count="1" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="26" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.assets">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="apiKey.js" path="/Users/omoyomo/turing/Mod4/GalleryOfTheReal/src/assets/apiKey.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.services">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="GetGallery.js" path="/Users/omoyomo/turing/Mod4/GalleryOfTheReal/src/services/GetGallery.js">
+          <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>
