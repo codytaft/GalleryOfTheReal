@@ -1,10 +1,7 @@
 <template>
-<div id="image-container">
-  <ul class="imageContainer">
-    {{ objects }}
-  </ul>
-
-</div>
+<li id="image-container">
+    <img v-bind:src='this.image' alt="gallery image">
+</li>
 </template>
 
 <script>
@@ -12,7 +9,7 @@
 export default {
   name: 'image-container',
   props:  {
-    objects: Array
+    image: String
   }
 }
 </script>
