@@ -1,4 +1,4 @@
-# GalleryOfTheReal
+# Gallery Of The Real
 
 ## Project setup
 
