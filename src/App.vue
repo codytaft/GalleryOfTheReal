@@ -3,10 +3,12 @@
   <div id="app">
     <Header msg="Welcome to the Gallery of the Real"/>
     <hr>
-    <div>
-      <ImageContainer v-bind:objects="this.images"/>
-    </div>
-    <button v-on:click="getAllObjects()"></button>
+    <button v-on:click="getArtistObjects(28495), this.images = []" class="sargent-btn artist-btn">John Singer Sargent</button>
+    <button v-on:click="getArtistObjects(29118)" class="turner-btn artist-btn">J.M.W. Turner</button>
+    <button v-on:click="getArtistObjects(18390)" class="dore-btn artist-btn">Gustave Dore</button>
+    <ul v-if="this.images.length">
+      <ImageContainer  v-for="item in images" v-bind:image="item" v-bind:key="item.id"/>
+    </ul>
   </div>
 </template>
 
@@ -31,16 +33,15 @@ export default {
       loading: true,
       objects: [],
       images: [],
-      nextLink: ''
+      nextLink: '',
     }
   },
   methods: {
 
-    getAllObjects(url=`https://api.harvardartmuseums.org/object?hasimage=1&apikey=${apiKey}`) {
-      console.log(url)
-      return axios.get(url)
+    getArtistObjects(id) {
+      return axios.get(`https://api.harvardartmuseums.org/object?person=${id}&size=20&apikey=${apiKey}`)
         .then(response => {
-          this.getImages(response.data)
+          this.getImages(response.data.records)
         })
         .catch(error => console.log(error))
         .finally(() => {
@@ -49,17 +50,14 @@ export default {
     },
 
     getImages: function(objects) {
-      console.log(objects)
-      return objects.records.forEach(object => {
-        console.log(object)
-        if (object.primaryimageurl !== null && this.images.length < 10 ) {
-          this.images.push(object.primaryimageurl)
-        } else if(this.images.length < 10) {
-          this.getAllObjects(objects.info.next)
-        } else if(this.images.length === 10) {
-          this.nextLink = objects.info.next
-        } 
-        return this.images.push(object.primaryimageurl)
+      return objects.forEach(object => {
+        if(object.images) {
+          object.images.forEach(image => {
+            
+            this.images.push(image.baseimageurl)
+          })
+          console.log(this.images)
+        }
       })
     }
   },
