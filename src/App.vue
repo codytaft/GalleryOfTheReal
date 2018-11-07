@@ -19,7 +19,6 @@
 import AppTitle from './components/AppTitle.vue'
 import ImageContainer from './components/ImageContainer.vue'
 import GetGallery from './services/GetGallery'
-import apiKey from './assets/apiKey';
 import axios from 'axios';
 
 export default {
@@ -40,7 +39,7 @@ export default {
   methods: {
 
     getArtistObjects(id) {
-      return axios.get(`https://api.harvardartmuseums.org/object?person=${id}&size=20&apikey=${apiKey}`)
+      return axios.get(`https://api.harvardartmuseums.org/object?person=${id}&size=20&apikey=${process.env.VUE_APP_API_KEY}`)
         .then(response => {
           this.getImages(response.data.records)
         })
